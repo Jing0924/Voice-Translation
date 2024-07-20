@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Voice Translation Website</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            text-align: center;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            width: 80%;
+            max-width: 500px;
+        }
+        #run-script-button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 15px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+        }
+        #run-script-button:hover {
+            background-color: #45a049;
+        }
+        #output {
+            margin-top: 20px;
+            font-size: 18px;
+            color: #333;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            background-color: #fafafa;
+            min-height: 50px;
+            text-align: left;  /* 確保文字靠左對齊 */
+        }
+        .loading {
+            display: none;
+            margin-top: 20px;
+            font-size: 16px;
+            color: #777;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Voice Translation Website</h1>
+        <button id="run-script-button">Start Recording</button>
+        <div class="loading" id="loading">Running script, please wait...</div>
+        <div id="output"></div>
+    </div>
+
+    <script>
+        // 取得按鈕元素，並為其添加點擊事件監聽器
+        document.getElementById('run-script-button').addEventListener('click', function() {
+            var outputDiv = document.getElementById('output');
+            var loadingDiv = document.getElementById('loading');
+            
+            // 清除先前的輸出，顯示加載訊息
+            outputDiv.innerText = 'Recording...';
+            loadingDiv.style.display = 'block';
+            
+            // 發送POST請求到伺服器端點'/run-script'
+            fetch('/run-script', { method: 'POST' })
+                .then(response => response.json())  // 將響應轉換為JSON格式
+                .then(data => {
+                    loadingDiv.style.display = 'none';  // 隱藏加載訊息
+                    outputDiv.innerText = data.output;  // 顯示腳本輸出結果
+                })
+                .catch(error => {
+                    loadingDiv.style.display = 'none';  // 隱藏加載訊息
+                    outputDiv.innerText = 'Error: ' + error;  // 顯示錯誤訊息
+                });
+        });
+    </script>
+</body>
+</html>
