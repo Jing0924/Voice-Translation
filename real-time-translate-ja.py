@@ -7,7 +7,7 @@ from google.cloud import translate_v2 as translate
 from google.cloud import texttospeech
 
 # 設置 Google Cloud 專案路徑
-os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = '/Users/onlynice/Desktop/STP_python/stp-by-jing-b0ab74d91c6c.json'
+os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = '/Users/onlynice/Projects/STP/private_key/stp-by-jing-b0ab74d91c6c.json'
 
 # 初始化 Google Cloud 客戶端
 speech_client = speech.SpeechClient()
