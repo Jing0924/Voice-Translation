@@ -7,7 +7,8 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: #f0f0f0;
+            background-color: #121212; /* 設定背景顏色為黑色 */
+            color: #ffffff; /* 設定文字顏色為白色 */
             display: flex;
             justify-content: center;
             align-items: center;
@@ -16,10 +17,10 @@
         }
         .container {
             text-align: center;
-            background-color: #fff;
+            background-color: #1e1e1e; /* 背景顏色為深灰色 */
             padding: 20px;
             border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.3); /* 調整陰影效果，使其更適合黑色背景 */
             width: 80%;
             max-width: 500px;
         }
@@ -38,14 +39,14 @@
         }
         #output {
             margin-top: 20px;
-            font-size: 18px;
-            color: #333;
+            font-size: 20px;
+            color: #ffffff; /* 設定文字顏色為白色 */
             padding: 10px;
-            border: 1px solid #ddd;
+            border: 1px solid #333; /* 邊框顏色調整為更深的灰色 */
             border-radius: 5px;
-            background-color: #fafafa;
+            background-color: #2a2a2a; /* 背景顏色為更深的灰色 */
             min-height: 50px;
-            text-align: left;  /* 確保文字靠左對齊 */
+            text-align: left;
         }
         .loading {
             display: none;
@@ -53,52 +54,57 @@
             font-size: 16px;
             color: #777;
         }
+        label, select {
+            margin-top: 10px;
+            font-size: 20px;
+        }
+        select {
+            padding: 5px;
+            border-radius: 5px;
+            border: 1px solid #4CAF50;
+            background-color: #2a2a2a;
+            color: white;
+        }
     </style>
 </head>
 <body>
     <div class="container">
         <h1>Voice Translation Website</h1>
+        <label for="language-select">Choose target language:</label>
+        <select id="language-select">
+            <option value="all">All</option>
+            <option value="en">English</option>
+            <option value="ja">Japanese</option>
+            <option value="ko">Korean</option>
+        </select>
         <button id="run-script-button">Start Recording</button>
         <div class="loading" id="loading">Running script, please wait...</div>
         <div id="output"></div>
     </div>
 
     <script>
-        // 取得按鈕元素，並為其添加點擊事件監聽器
         document.getElementById('run-script-button').addEventListener('click', function() {
             var outputDiv = document.getElementById('output');
             var loadingDiv = document.getElementById('loading');
+            var language = document.getElementById('language-select').value;
             
-            // 清除先前的輸出，顯示加載訊息
             outputDiv.innerText = 'Recording...';
             loadingDiv.style.display = 'block';
-
-                    let countdownElement = document.getElementById('countdown');
-        let countdownNumber = 5;
-
-        function updateCountdown() {
-            countdownElement.textContent = countdownNumber;
-            if (countdownNumber > 0) {
-                countdownNumber--;
-                setTimeout(updateCountdown, 1000);
-            } else {
-                countdownElement.textContent = '錄製结束';
-            }
-        }
-
-        setTimeout(updateCountdown, 1000);
             
-            // 發送POST請求到伺服器端點'/run-script'
-            fetch('/run-script', { method: 'POST' })
-                .then(response => response.json())  // 將響應轉換為JSON格式
-                .then(data => {
-                    loadingDiv.style.display = 'none';  // 隱藏加載訊息
-                    outputDiv.innerText = data.output;  // 顯示腳本輸出結果
-                })
-                .catch(error => {
-                    loadingDiv.style.display = 'none';  // 隱藏加載訊息
-                    outputDiv.innerText = 'Error: ' + error;  // 顯示錯誤訊息
-                });
+            fetch('/run-script', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ language: language })
+            })
+            .then(response => response.json())
+            .then(data => {
+                loadingDiv.style.display = 'none';
+                outputDiv.innerText = data.output;
+            })
+            .catch(error => {
+                loadingDiv.style.display = 'none';
+                outputDiv.innerText = 'Error: ' + error;
+            });
         });
     </script>
 </body>

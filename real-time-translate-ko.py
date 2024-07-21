@@ -55,18 +55,13 @@ def speech_to_text(file_path):
     for result in response.results:                                 # 處理識別結果
         return result.alternatives[0].transcript                    # 返回識別出的文本
 
-# 翻譯文本成英文
-def translate_text(text, target_language='en'):  # 目標語言為英文
-    translation = translate_client.translate(text, target_language=target_language)  # 調用翻譯API
-    return translation['translatedText']                                             # 返回翻譯結果
-
-# 翻譯文本到日文
-def translate_text_to_japanese(text):
-    translation = translate_client.translate(text, target_language='ja')  # 調用翻譯API
+# 翻譯文本成韓文
+def translate_text_to_korean(text):
+    translation = translate_client.translate(text, target_language='ko')  # 調用翻譯API
     return translation['translatedText']                                  # 返回翻譯結果
 
-# 英文文本轉語音
-def text_to_speech(text, lang='en'):
+# 韓文文本轉語音
+def text_to_speech(text, lang='ko'):
     synthesis_input = texttospeech.SynthesisInput(text=text)              # 創建合成輸入物件
     voice = texttospeech.VoiceSelectionParams(
         language_code=lang,                                               # 設置語言代碼
@@ -106,9 +101,6 @@ if __name__ == "__main__":
     record_audio()                                             # 錄製音頻
     text = speech_to_text("output.wav")                        # 將音頻轉換為文本
     print(f"Recognized text: {text}")                          # 輸出識別文本
-    translated_text_en = translate_text(text, target_language='en')  # 翻譯文本到英文
-    print(f"Translated text (English): {translated_text_en}")        # 輸出翻譯文本（英文）
-    translated_text_ja = translate_text_to_japanese(text)            # 翻譯文本到日文
-    print(f"Translated text (Japanese): {translated_text_ja}")       # 輸出翻譯文本（日文）
-    text_to_speech(translated_text_en, lang='en-US')                 # 英文文本轉語音並播放
-    text_to_speech(translated_text_ja, lang='ja')                    # 日文文本轉語音並播放
+    translated_text_ko = translate_text_to_korean(text)            # 翻譯文本到韓文
+    print(f"Translated text (Korean): {translated_text_ko}")       # 輸出翻譯文本（韓文）
+    text_to_speech(translated_text_ko, lang='ko')                    # 韓文文本轉語音並播放
