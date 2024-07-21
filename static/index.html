@@ -68,7 +68,7 @@
     </style>
 </head>
 <body>
-    <div class="container">
+    <main class="container">
         <h1>Voice Translation Website</h1>
         <label for="language-select">Choose target language:</label>
         <select id="language-select">
@@ -80,31 +80,35 @@
         <button id="run-script-button">Start Recording</button>
         <div class="loading" id="loading">Running script, please wait...</div>
         <div id="output"></div>
-    </div>
+    </main>
 
     <script>
-        document.getElementById('run-script-button').addEventListener('click', function() {
-            var outputDiv = document.getElementById('output');
-            var loadingDiv = document.getElementById('loading');
-            var language = document.getElementById('language-select').value;
+        document.getElementById('run-script-button').addEventListener('click', async function() {
+            const outputDiv = document.getElementById('output');
+            const loadingDiv = document.getElementById('loading');
+            const language = document.getElementById('language-select').value;
             
             outputDiv.innerText = 'Recording...';
             loadingDiv.style.display = 'block';
-            
-            fetch('/run-script', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ language: language })
-            })
-            .then(response => response.json())
-            .then(data => {
+
+            try {
+                const response = await fetch('/run-script', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ language })
+                });
+
+                if (!response.ok) {
+                    throw new Error(`Error: ${response.statusText}`);
+                }
+
+                const data = await response.json();
                 loadingDiv.style.display = 'none';
                 outputDiv.innerText = data.output;
-            })
-            .catch(error => {
+            } catch (error) {
                 loadingDiv.style.display = 'none';
-                outputDiv.innerText = 'Error: ' + error;
-            });
+                outputDiv.innerText = error.message;
+            }
         });
     </script>
 </body>
