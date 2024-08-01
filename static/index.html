@@ -7,59 +7,67 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: #121212; /* 設定背景顏色為黑色 */
-            color: #ffffff; /* 設定文字顏色為白色 */
+            background-color: #121212;
+            color: #ffffff;
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
             margin: 0;
+            font-size: 18px;
         }
+
         .container {
             text-align: center;
-            background-color: #1e1e1e; /* 背景顏色為深灰色 */
-            padding: 20px;
+            background-color: #1e1e1e;
+            padding: 30px;
             border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.3); /* 調整陰影效果，使其更適合黑色背景 */
-            width: 80%;
-            max-width: 500px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+            width: 90%;
+            max-width: 600px;
         }
+
         #run-script-button {
             background-color: #4CAF50;
             color: white;
-            padding: 15px 20px;
+            padding: 20px 30px;
             border: none;
             border-radius: 5px;
             cursor: pointer;
-            font-size: 16px;
+            font-size: 18px;
             transition: background-color 0.3s ease;
         }
+
         #run-script-button:hover {
             background-color: #45a049;
         }
+
         #output {
             margin-top: 20px;
-            font-size: 20px;
-            color: #ffffff; /* 設定文字顏色為白色 */
-            padding: 10px;
-            border: 1px solid #333; /* 邊框顏色調整為更深的灰色 */
+            font-size: 22px;
+            color: #ffffff;
+            padding: 15px;
+            border: 1px solid #333;
             border-radius: 5px;
-            background-color: #2a2a2a; /* 背景顏色為更深的灰色 */
-            min-height: 50px;
+            background-color: #2a2a2a;
+            min-height: 60px;
             text-align: left;
         }
+
         .loading {
             display: none;
             margin-top: 20px;
             font-size: 16px;
             color: #777;
         }
+
         label, select {
             margin-top: 10px;
-            font-size: 20px;
+            font-size: 22px;
         }
+
         select {
-            padding: 5px;
+            padding: 10px;
             border-radius: 5px;
             border: 1px solid #4CAF50;
             background-color: #2a2a2a;
@@ -76,6 +84,10 @@
             <option value="en">English</option>
             <option value="ja">Japanese</option>
             <option value="ko">Korean</option>
+            <option value="fr">French</option>
+            <option value="es">Spanish</option>
+            <option value="de">German</option>
+            <option value="ms">Malay</option>
         </select>
         <button id="run-script-button">Start Recording</button>
         <div class="loading" id="loading">Running script, please wait...</div>
@@ -87,7 +99,7 @@
             const outputDiv = document.getElementById('output');
             const loadingDiv = document.getElementById('loading');
             const language = document.getElementById('language-select').value;
-            
+
             outputDiv.innerText = 'Recording...';
             loadingDiv.style.display = 'block';
 

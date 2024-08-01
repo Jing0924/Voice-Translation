@@ -22,6 +22,14 @@ def run_script():
             result = subprocess.run(['python3', 'real-time-translate-ja.py'], capture_output=True, text=True)
         elif language == 'ko':
             result = subprocess.run(['python3', 'real-time-translate-ko.py'], capture_output=True, text=True)
+        elif language == 'fr':
+            result = subprocess.run(['python3', 'real-time-translate-fr.py'], capture_output=True, text=True)
+        elif language == 'es':
+            result = subprocess.run(['python3', 'real-time-translate-es.py'], capture_output=True, text=True)
+        elif language == 'de':
+            result = subprocess.run(['python3', 'real-time-translate-de.py'], capture_output=True, text=True)
+        elif language == 'ms':
+            result = subprocess.run(['python3', 'real-time-translate-ms.py'], capture_output=True, text=True)
         output = result.stdout
     except Exception as e:
         output = str(e)
