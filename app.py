@@ -15,21 +15,21 @@ def run_script():
 
         # 根據選擇的語言執行不同的腳本
         if language == 'all':
-            result = subprocess.run(['python3', 'real-time-translate-all.py'], capture_output=True, text=True)
+            result = subprocess.run(['python3', 'script/real-time-translate-all.py'], capture_output=True, text=True)
         elif language == 'en':
-            result = subprocess.run(['python3', 'real-time-translate-en.py'], capture_output=True, text=True)
+            result = subprocess.run(['python3', 'script/real-time-translate-en.py'], capture_output=True, text=True)
         elif language == 'ja':
-            result = subprocess.run(['python3', 'real-time-translate-ja.py'], capture_output=True, text=True)
+            result = subprocess.run(['python3', 'script/real-time-translate-ja.py'], capture_output=True, text=True)
         elif language == 'ko':
-            result = subprocess.run(['python3', 'real-time-translate-ko.py'], capture_output=True, text=True)
+            result = subprocess.run(['python3', 'script/real-time-translate-ko.py'], capture_output=True, text=True)
         elif language == 'fr':
-            result = subprocess.run(['python3', 'real-time-translate-fr.py'], capture_output=True, text=True)
+            result = subprocess.run(['python3', 'script/real-time-translate-fr.py'], capture_output=True, text=True)
         elif language == 'es':
-            result = subprocess.run(['python3', 'real-time-translate-es.py'], capture_output=True, text=True)
+            result = subprocess.run(['python3', 'script/real-time-translate-es.py'], capture_output=True, text=True)
         elif language == 'de':
-            result = subprocess.run(['python3', 'real-time-translate-de.py'], capture_output=True, text=True)
+            result = subprocess.run(['python3', 'script/real-time-translate-de.py'], capture_output=True, text=True)
         elif language == 'ms':
-            result = subprocess.run(['python3', 'real-time-translate-ms.py'], capture_output=True, text=True)
+            result = subprocess.run(['python3', 'script/real-time-translate-ms.py'], capture_output=True, text=True)
         output = result.stdout
     except Exception as e:
         output = str(e)
