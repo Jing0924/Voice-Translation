@@ -45,7 +45,6 @@ def record_audio(duration=5, output_file="output.wav"):
         wf.setsampwidth(audio.get_sample_size(pyaudio.paInt16))
         wf.setframerate(RATE)
         wf.writeframes(b''.join(frames))
-    print(f"Audio saved to {output_path}")
     return output_path
 
 def speech_to_text(file_path, language_code="zh-TW"):
@@ -83,7 +82,6 @@ def text_to_speech(text, lang, output_file):
     output_path = os.path.join(OUTPUT_DIR, output_file)
     with open(output_path, "wb") as out:
         out.write(response.audio_content)
-    print(f"Audio saved to {output_path}")
     return output_path
 
 def play_audio(file_path):
