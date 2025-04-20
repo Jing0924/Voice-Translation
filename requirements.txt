@@ -1,0 +1,5 @@
+pyaudio
+google-cloud-speech
+google-cloud-translate
+google-cloud-texttospeech
+flask
