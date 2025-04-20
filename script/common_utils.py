@@ -6,6 +6,8 @@ from google.cloud import speech_v1p1beta1 as speech
 from google.cloud import translate_v2 as translate
 from google.cloud import texttospeech
 
+# 提示：目前該專案只支持中文轉英文、日文、韓文、法文、西班牙文、德文和馬來語。
+
 # 設置 Google Cloud 專案路徑
 os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = '/Users/onlynice/Projects/STP/private_key/stp-by-jing-b0ab74d91c6c.json'
 

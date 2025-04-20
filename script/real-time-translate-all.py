@@ -15,7 +15,8 @@ if __name__ == "__main__":
         "ko": "Korean",
         "fr": "French",
         "es": "Spanish",
-        "de": "German"
+        "de": "German",
+        "ms": "Malay"
     }
     
     for lang_code, lang_name in languages.items():

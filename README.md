@@ -1,5 +1,3 @@
-n
-
 Voice-Translation is a project aimed at providing seamless voice-to-voice translation using advanced speech recognition and translation technologies. This tool is designed to break language barriers and enable effective communication across different languages.
 
 ## Features
@@ -11,7 +9,7 @@ Voice-Translation is a project aimed at providing seamless voice-to-voice transl
 ## Installation
 1. Clone the repository:
     ```bash
-    git clone https://github.com/yourusername/Voice-Translation.git
+    git clone https://github.com/Jing0924/Voice-Translation.git
     ```
 2. Navigate to the project directory:
     ```bash
@@ -27,10 +25,8 @@ Voice-Translation is a project aimed at providing seamless voice-to-voice transl
     ```bash
     python app.py
     ```
-2. Follow the on-screen instructions to start translating.
-
-## Contributing
-Contributions are welcome! Please fork the repository and submit a pull request.
-
-## License
-This project is licensed under the MIT License. See the `LICENSE` file for details.
+2. Open your browser and navigate to:
+    ```
+    http://127.0.0.1:5001
+    ```
+3. Follow the on-screen instructions to start translating.
